@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>時間圧縮・絶：遅ファイガ練習</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">絶もうひとつの未来 / P3</p>
+        <h1>時間圧縮・絶：遅ファイガ</h1>
+      </div>
+      <div class="controls" aria-label="練習設定">
+        <label>モード
+          <select id="modeSelect">
+            <option value="learning">学習モード</option>
+            <option value="combat">実戦モード</option>
+            <option value="noCountdown">カウントなしモード</option>
+            <option value="simulation">擬似実戦モード</option>
+            <option value="ghost">ゴースト比較モード</option>
+          </select>
+        </label>
+        <label id="mechanicControl">練習デバフ
+          <select id="mechanicSelect">
+            <option value="earlyFire">早ファイガ</option>
+            <option value="middleFire">中ファイガ</option>
+            <option value="lateFire" selected>遅ファイガ</option>
+            <option value="blizzard">ブリザガ</option>
+          </select>
+        </label>
+        <label id="roleControl">自分のポジション
+          <select id="roleSelect">
+            <option>MT</option><option>ST</option><option>H1</option><option selected>H2</option>
+          </select>
+        </label>
+        <label>外周レーン
+          <select id="laneSelect">
+            <option value="left">左下レーン</option>
+            <option value="right">右下レーン</option>
+          </select>
+        </label>
+        <button id="startButton" type="button">開始</button>
+        <button id="resetButton" type="button" class="secondary">初期位置に戻す</button>
+      </div>
+    </header>
+
+    <section class="status-panel" aria-live="polite">
+      <div><span>表示</span><strong id="debuffName">待機中</strong></div>
+      <div><span>現在のフェーズ</span><strong id="phaseText">開始を待っています</strong></div>
+      <div><span>次の判定まで</span><strong id="countdown">--</strong></div>
+      <div id="targetStatus"><span>現在の正解エリア</span><strong id="targetText">中央</strong></div>
+    </section>
+
+    <section class="practice-layout">
+      <div class="field-wrap">
+        <div id="arena" class="arena" role="application" aria-label="円形戦闘フィールド。青い駒をドラッグして移動します。">
+          <div class="outer-label">外周</div>
+          <div id="hourglasses" aria-label="砂時計"></div>
+          <div class="lane-marker lane-left" aria-hidden="true">左</div>
+          <div class="lane-marker lane-right" aria-hidden="true">右</div>
+          <div class="center-zone" aria-hidden="true"><span>中央</span></div>
+          <button id="player" class="player" type="button" aria-label="プレイヤー駒。ドラッグして移動">H2</button>
+          <div id="ghostPlayer" class="ghost-player" hidden aria-hidden="true">成功例</div>
+          <svg id="comparisonOverlay" class="comparison-overlay" viewBox="0 0 100 100" hidden aria-label="成功例と自分の操作軌跡の比較"></svg>
+          <div id="autoPlayers" aria-label="自動操作のパーティメンバー"></div>
+        </div>
+        <p class="hint">青いH2駒をドラッグして移動します。判定は駒の中心座標で行います。</p>
+      </div>
+
+      <aside class="guide-panel">
+        <h2>行動ガイド</h2>
+        <p id="actionText">開始を押すと練習を始めます。</p>
+        <div id="feedback" class="feedback">準備できました。</div>
+        <ol id="stepList" class="step-list">
+          <li>1回目の処理</li><li>2回目の処理</li>
+        </ol>
+      </aside>
+    </section>
+
+    <section id="resultPanel" class="result-panel" hidden>
+      <h2>遅ファイガ 練習結果</h2>
+      <div id="results"></div>
+      <p id="scoreText"></p>
+      <button id="retryButton" type="button">もう一度練習する</button>
+      <button id="replayButton" type="button" class="secondary">ゴースト再生</button>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

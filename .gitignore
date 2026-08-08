@@ -1,0 +1,8 @@
+# ローカル環境・OSが作るファイルは公開対象に含めない
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# エディタ設定
+.vscode/
+.idea/
