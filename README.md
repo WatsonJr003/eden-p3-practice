@@ -58,3 +58,4 @@ GitHub Pagesの公開URLを確認してから、Google Sitesで次の操作を�
 ## 調整箇所
 
 `script.js` 冒頭の `SETTINGS` で、判定時刻・判定範囲・砂時計座標を調整できます。実測値が確定した場合は、各デバフの `steps` にある `checkAt` を変更してください。
+<!-- trigger pages -->
